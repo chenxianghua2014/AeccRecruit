@@ -1,0 +1,4 @@
+wl.img = jpg,png,bmp,jpeg
+wl.resume = jpg,gif,png,bmp,pdf
+wl.fj = jpg,gif,png,bmp,pdf
+wl.filter =jpg,png,bmp,jpeg,gif,pdf,zip

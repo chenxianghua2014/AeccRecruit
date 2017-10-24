@@ -1,0 +1,77 @@
+package com.ttgis.recruit.interceptors;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
+public class LoginInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
+	String path = request.getServletPath();
+	String urlPath = request.getRequestURI();
+	String contextPath = request.getContextPath();
+	String url = urlPath.substring(contextPath.length());
+	String reString = request.getRequestURI();
+
+	/* 过滤上传文件夹upuppics中的文件范文权限 */
+	/*if (path != null && path.equals("uppics")) {
+	    str 文件后缀名
+	    String str = urlPath.substring(urlPath.lastIndexOf(".") + 1, urlPath.length()).toLowerCase();
+	    if (urlPath.indexOf(".") != -1) {
+		
+		if (str.equals("jpg") || str.equals("png") || str.equals("bmp") || str.equals("jpeg") || str.equals("gif") || str.equals("pdf")
+			|| str.equals("js") || str.equals("css") || str.equals("xls") || str.equals("pdf") || str.equals("swf") || str.equals("doc")
+			|| str.equals("xlsx")) {
+		    return true;
+		}else{
+		    return false;
+		}
+	    }
+	}*/
+	/* 是否登录，若登录,通过 .之前loginSession设置错误 */
+	Object o = request.getSession().getAttribute("loginSessionFlag");
+	if (o != null) {
+	    return true;
+	}
+
+	
+	/* 后缀符合list，通过 */
+	String str = null;
+	if (urlPath.indexOf(".") != -1) {
+	    str = urlPath.substring(urlPath.lastIndexOf(".") + 1, urlPath.length()).toLowerCase();
+	    if (str.equals("ico") || str.equals("png") || str.equals("gif") || str.equals("jpg") || str.equals("jpeg") || str.equals("html")
+		    || str.equals("js") || str.equals("css") || str.equals("xls") || str.equals("pdf") || str.equals("swf") || str.equals("doc")
+		    || str.equals("xlsx")) {
+		return true;
+	    }
+	}
+	/* 白名单 */
+	if (path.matches(LoginBlankList.NO_INTERCEPTOR_PATH)) {
+	    return true;
+	} else {
+	    //System.out.println(urlPath + "---->被拦截！---->" + o);
+	    PrintWriter out = response.getWriter();
+	    StringBuilder builder = new StringBuilder();
+	    builder.append("<script type=\"text/javascript\">window.top.location.href='/Recruit/Main';</script>");
+	    out.print(builder.toString());
+	    out.close();
+	    return false;
+	}
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object obj, Exception err) throws Exception {
+
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object obj, ModelAndView mv) throws Exception {
+
+    }
+}

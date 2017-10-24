@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ttgis.recruit.Mapper.ResumeMapper">
+	<resultMap id="BaseResultMap" type="com.ttgis.recruit.domain.Resume">
+		<id column="RESUME_ID" property="resumeId" jdbcType="VARCHAR" />
+		<id column="RESUME_FJID" property="resumeFjid" jdbcType="VARCHAR" />
+		<result column="RESUME_NAME" property="resumeName" jdbcType="VARCHAR" />
+		<result column="RESUME_SEX" property="resumeSex" jdbcType="VARCHAR" />
+		<result column="RESUME_BIRTHDAY" property="resumeBirthday" jdbcType="TIMESTAMP" />
+		<result column="RESUME_SFZH" property="resumeSfzh" jdbcType="VARCHAR" />
+		<result column="RESUME_RXQHKSZCS_PROVINCE" property="resumeRxqhkszcsProvince" jdbcType="VARCHAR" />
+		<result column="RESUME_RXQHKSZCS_CITY" property="resumeRxqhkszcsCity" jdbcType="VARCHAR" />
+		<result column="RESUME_MQSZCS_PROVINCE" property="resumeMqszcsProvince" jdbcType="VARCHAR" />
+		<result column="RESUME_MQSZCS_CITY" property="resumeMqszcsCity" jdbcType="VARCHAR" />
+		<result column="RESUME_PHOTOS" property="resumePhotos" jdbcType="VARCHAR" />
+		<result column="RESUME_TELPHONE" property="resumeTelphone" jdbcType="NUMERIC" />
+		<result column="RESUME_EMAIL" property="resumeEmail" jdbcType="VARCHAR" />
+		<result column="RESUME_FJ" property="resumeFj" jdbcType="VARCHAR" />
+		<result column="RESUME_ADDTIME" property="resumeAddtime" jdbcType="TIMESTAMP" />
+		<result column="RESUME_DELFLAG" property="resumeDelflag" jdbcType="NUMERIC" />
+		<result column="RESUME_ZZJL" property="resumeZzjl" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RESUME_ID,RESUME_FJID,RESUME_NAME, RESUME_SEX, RESUME_BIRTHDAY, RESUME_RXQHKSZCS_PROVINCE,
+		RESUME_RXQHKSZCS_CITY,
+		RESUME_MQSZCS_PROVINCE, RESUME_MQSZCS_CITY, RESUME_PHOTOS,RESUME_TELPHONE,
+		RESUME_EMAIL,RESUME_FJ,RESUME_ADDTIME, RESUME_DELFLAG, RESUME_ZZJL
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from RESUME
+		where RESUME_ID = #{resumeId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByPrimaryKeySelectiveById" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select *
+		from RESUME
+		where RESUME_ID = #{resumeId,jdbcType=VARCHAR} ORDER BY RESUME_ADDTIME
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from RESUME
+		where RESUME_ID = #{resumeId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insertSelective" parameterType="com.ttgis.recruit.domain.Resume">
+		insert into RESUME
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="resumeId != null">
+				RESUME_ID,
+			</if>
+			<if test="resumeName != null">
+				RESUME_NAME,
+			</if>
+			<if test="resumeSex != null">
+				RESUME_SEX,
+			</if>
+			<if test="resumeBirthday != null">
+				RESUME_BIRTHDAY,
+			</if>
+			<if test="resumeSfzh != null">
+				RESUME_SFZH,
+			</if>
+			<if test="resumeRxqhkszcsProvince != null">
+				RESUME_RXQHKSZCS_PROVINCE,
+			</if>
+			<if test="resumeRxqhkszcsCity != null">
+				RESUME_RXQHKSZCS_CITY,
+			</if>
+			<if test="resumeMqszcsProvince != null">
+				RESUME_MQSZCS_PROVINCE,
+			</if>
+			<if test="resumeMqszcsCity != null">
+				RESUME_MQSZCS_CITY,
+			</if>
+			<if test="resumeTelphone != null">
+				RESUME_TELPHONE,
+			</if>
+			<if test="resumeEmail != null">
+				RESUME_EMAIL,
+			</if>
+			<if test="resumeAddtime != null">
+				RESUME_ADDTIME,
+			</if>
+			<if test="resumeDelflag != null">
+				RESUME_DELFLAG,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="resumeId != null">
+				#{resumeId,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeName != null">
+				#{resumeName,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeSex != null">
+				#{resumeSex,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeBirthday != null">
+				#{resumeBirthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resumeSfzh != null">
+				#{resumeSfzh,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeRxqhkszcsProvince != null">
+				#{resumeRxqhkszcsProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeRxqhkszcsCity != null">
+				#{resumeRxqhkszcsCity,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeMqszcsProvince != null">
+				#{resumeMqszcsProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeMqszcsCity != null">
+				#{resumeMqszcsCity,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeTelphone != null">
+				#{resumeTelphone,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeEmail != null">
+				#{resumeEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeAddtime != null">
+				#{resumeAddtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resumeDelflag != null">
+				#{resumeDelflag,jdbcType=NUMERIC},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.ttgis.recruit.domain.Resume">
+		update RESUME
+		<set>
+			<if test="resumeName != null">
+				RESUME_NAME = #{resumeName,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeSex != null">
+				RESUME_SEX = #{resumeSex,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeBirthday != null">
+				RESUME_BIRTHDAY = #{resumeBirthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resumeSfzh != null">
+				RESUME_SFZH = #{resumeSfzh,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeRxqhkszcsProvince != null">
+				RESUME_RXQHKSZCS_PROVINCE =
+				#{resumeRxqhkszcsProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeRxqhkszcsCity != null">
+				RESUME_RXQHKSZCS_CITY = #{resumeRxqhkszcsCity,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeMqszcsProvince != null">
+				RESUME_MQSZCS_PROVINCE = #{resumeMqszcsProvince,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeMqszcsCity != null">
+				RESUME_MQSZCS_CITY = #{resumeMqszcsCity,jdbcType=VARCHAR},
+			</if>
+			<if test="resumePhotos != null">
+				RESUME_PHOTOS = #{resumePhotos,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeTelphone != null">
+				RESUME_TELPHONE = #{resumeTelphone,jdbcType=NUMERIC},
+			</if>
+			<if test="resumeEmail != null">
+				RESUME_EMAIL = #{resumeEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeAddtime != null">
+				RESUME_ADDTIME = #{resumeAddtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resumeDelflag != null">
+				RESUME_DELFLAG = #{resumeDelflag,jdbcType=NUMERIC},
+			</if>
+			<if test="resumeZzjl != null">
+				RESUME_ZZJL = #{resumeZzjl,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where RESUME_ID = #{resumeId,jdbcType=VARCHAR}
+	</update>
+	<insert id="FjinsertSelective" parameterType="com.ttgis.recruit.domain.Resume">
+		insert into RESUME_FJ
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="resumeFjid != null">
+				RESUME_FJID,
+			</if>
+			<if test="resumeId != null">
+				RESUME_ID,
+			</if>
+			<if test="resumeFj != null">
+				RESUME_FJ,
+			</if>
+			<if test="resumeAddtime != null">
+				RESUME_ADDTIME,
+			</if>
+			<if test="resumeDelflag != null">
+				RESUME_DELFLAG,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="resumeFjid != null">
+				#{resumeFjid,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeId != null">
+				#{resumeId,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeFj != null">
+				#{resumeFj,jdbcType=VARCHAR},
+			</if>
+			<if test="resumeAddtime != null">
+				#{resumeAddtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resumeDelflag != null">
+				#{resumeDelflag,jdbcType=NUMERIC},
+			</if>
+		</trim>
+	</insert>
+</mapper>

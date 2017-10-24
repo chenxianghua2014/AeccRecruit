@@ -1,0 +1,8 @@
+ENDORSED_DIRS="D\:\\Tomcat 7.0/common/endorsed"
+JDK_HOME=C\:\\Program Files (x86)\\Java\\jdk1.7.0_25
+LIBRARY_PATH="C\:\\Program Files (x86)\\Java\\jdk1.7.0_25\\bin;D\:\\Tomcat 7.0\\bin"
+SERVER_ENABLEMENT=true
+TOMCAT_BASE=D\:\\Tomcat 7.0
+TOMCAT_HOME=D\:\\Tomcat 7.0
+TOMCAT_TEMP=D\:\\Tomcat 7.0\\temp
+eclipse.preferences.version=1

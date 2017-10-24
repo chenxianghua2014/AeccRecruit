@@ -1,0 +1,32 @@
+/**   
+* @Title LoginBlankList.java 
+* @Package com.ttgis.recruit.interceptors 
+* @Description TODO 
+* @author hua
+* @date 2016年9月2日 下午1:54:45 
+* @version V1.0   
+*/
+package com.ttgis.recruit.interceptors;
+
+/** 
+* @ClassName LoginBlankList 
+* @Description TODO 
+* @author cxh 
+* @date 2016年9月2日 下午1:54:45 
+*  
+*/
+public class LoginBlankList {
+    public static final String NO_INTERCEPTOR_PATH = "/((Main)|(LoginFrmFirst)|(LinkListJson)|(GroupIntroduction)|(TalentStrategy)"
+    	+ "|(InformationCenter)|(SearchEnterprise)|(SearchPosition)|(LoginFrm)|(UserLogin)"
+	   /*后台用户*/
+	+ "|(htRecruit)|(zzjgLogin)"
+    	+ "|(UserLogout)|(logout)|(zzjgLogout)|(zhmm)|(checkUserIsCZ)|(successCzUserUpdPD)"
+    	+ "|(images)|(image)|(shangchuan)|(css)|(js)"
+    	+ "|(DLcpgl)|(CpglLogin)"
+    	+ "|(register)|(checkUserIdcard)|(checkUserName)|(checkUserTelephone)|(checkUserSfzh)|(registerUser))/*.*"; // 不对匹配该值的访问路径拦截（正则）
+    
+    public static final String NO_FILTER_PATH = "((bbsNr)|(bbsReviewNr)|(reviewReplyNr)|(reviewNr)|(reviewNr)|(bbsNr)"
+    	+ "|(mbglContent)|(mbglContent)|(articleContent)|(articleReviewNr)|(bbsNrueditor)|(articleContent)|(xqqzNr)|(xqqzReviewNr)"
+    	+ "|(tkglSttg)|(tkglStxxA)|(tkglStxxB)|(tkglStxxC)|(tkglStxxD)|(sttg)|(stxxa)|(stxxb)"
+    	+ "|(stxxc)|(stxxd)|(xcxxContent)|(xcxxContent)|(xqqzReviewNr)|(xqqzNr)|(zjgzGznr)|(Content)|(zpxwContent)|(articleReviewNr))";
+}

@@ -1,0 +1,4 @@
+jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+jdbc.url=jdbc:sqlserver://1.202.247.44:1433;databaseName=Recruit
+jdbc.username=sa
+jdbc.password=root
